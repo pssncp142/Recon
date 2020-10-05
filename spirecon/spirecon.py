@@ -126,7 +126,7 @@ def order(im, config, out_sz=64, in_sz=102, shft=2, out_im=None):
 
         fun = RectBivariateSpline(np.arange(2040), X[lim_l:lim_h], im[:, lim_l:lim_h], kx=1, ky=1)
         XX, YY = np.meshgrid(np.arange(in_sz), Y)
-        tmp[:,:] =  fun(YY, polf(YY)+(XX-in_sz//2)+2, grid=False)
+        tmp[:,:] =  fun(YY, polf(YY)+(XX-in_sz//2)+shft, grid=False)
         r_im[:,locs[i]*out_sz:(locs[i]+1)*out_sz] = tmp[:,(in_sz-out_sz)//2:-(in_sz-out_sz)//2]
 
     if out_im is not None:
